@@ -1,25 +1,53 @@
-import logo from './logo.svg';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import './App.css';
 
+const items = [
+  {
+    id: "item-0",
+    content: "item 0",
+  },
+  {
+    id: "item-1",
+    content: "item 1",
+  },
+  {
+    id: "item-2",
+    content: "item 2",
+  },
+  {
+    id: "item-3",
+    content: "item 3",
+  },
+  {
+    id: "item-4",
+    content: "item 4",
+  },
+];
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <div>
+    <DragDropContext>
+      <Droppable droppableId="droppable">
+        {(provided, sanpshot) => (
+          <div {...provided.droppableProps} ref={provided.innerRef}>
+            {items.map((item, index) => (
+              <Draggable key={item.id} draggableId={item.id} index={index}>
+                {(provided, sanpshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    {item.content}
+                  </div>
+                )}
+              </Draggable>
+            ))}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
+  </div>;
 }
 
 export default App;
