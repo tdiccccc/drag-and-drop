@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <App />
+  // </React.StrictMode> react-beautiful-dndでUnable to find draggable with idがでたとき</React.StrictMode>を削除する
 );
 
 // If you want to start measuring performance in your app, pass a function
